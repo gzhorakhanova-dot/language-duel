@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="kk"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Language Duel</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{--bg:#0f0d2e;--panel:#1a1747;--line:#2e2a69;--tx:#f3f1ff;--mut:#9d98d6;--me:#4f6bff;--foe:#ff5c7a;--ok:#2fd28b;
+--f:"Trebuchet MS","Segoe UI",system-ui,sans-serif}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 var(--f);padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+main{max-width:480px;margin:0 auto;padding:16px}
+h1{font-size:30px;font-weight:800;letter-spacing:-.5px;margin:6px 0 2px}
+h2{font-size:18px;margin:0 0 10px}
+.mut{color:var(--mut);font-size:14px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:16px;margin:14px 0}
+button{font:inherit;font-weight:700;width:100%;border:0;border-radius:14px;padding:15px;margin:6px 0;background:var(--me);color:#fff}
+button:active{transform:scale(.98)}button:focus-visible{outline:3px solid #fff}
+button.ghost{background:transparent;border:1.5px solid var(--line);color:var(--tx)}
+select,input{width:100%;font:inherit;padding:13px;border-radius:12px;border:1.5px solid var(--line);background:var(--bg);color:var(--tx);margin:4px 0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.stats b{display:block;font-size:24px}
+.lvl{height:8px;border-radius:8px;background:var(--line);overflow:hidden;margin-top:10px}.lvl i{display:block;height:100%;background:var(--ok)}
+.tabs{display:flex;gap:6px;margin-bottom:8px}.tabs button{margin:0;padding:9px;font-size:14px}
+.row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line)}
+.hide{display:none}
+.arena{display:flex;justify-content:space-between;align-items:end}
+.sc{font-size:44px;font-weight:800;line-height:1}.sc.me{color:var(--me)}.sc.foe{color:var(--foe);text-align:right}
+.tug{height:14px;border-radius:14px;background:var(--foe);overflow:hidden;margin:10px 0}
+.tug i{display:block;height:100%;width:50%;background:var(--me);transition:width .5s cubic-bezier(.3,1.4,.5,1)}
+.timer{height:5px;background:var(--line);border-radius:5px;overflow:hidden}.timer i{display:block;height:100%;width:100%;background:var(--mut)}
+.word{font-size:38px;font-weight:800;text-align:center;margin:26px 0;letter-spacing:-.5px}
+.opt{background:var(--bg);border:2px solid var(--line);text-align:left;font-weight:600}
+.opt.ok{border-color:var(--ok);background:#12392e}.opt.bad{border-color:var(--foe);background:#401a2a}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body><main>
+<div id="home">
+ <h1>Language Duel</h1><div class="mut">Ағылшын сөздері: жеңіс үшін жарыс</div>
+ <div class="panel">
+  <div class="stats"><div><b id="sT">0</b><span class="mut">ұпай</span></div><div><b id="sS">0</b><span class="mut">күн серия</span></div><div><b id="sW">0</b><span class="mut">жеңіс</span></div></div>
+  <div class="lvl"><i id="lv"></i></div><div class="mut" id="lvt"></div>
+ </div>
+ <div class="panel"><h2>Ойнау</h2>
+  <button id="duel">Дуэль: 5 сөз, қарсыласқа қарсы</button>
+  <button class="ghost" id="train">Жаттығу: 10 сөз, қатесін қайталау</button>
+  <select id="country"></select>
+ </div>
+ <div class="panel"><div class="tabs"><button id="tp">Ойыншылар</button><button class="ghost" id="tc">Елдер</button></div><div id="lb"></div></div>
+ <button class="ghost" id="inv">Досты шақыру</button>
+</div>
+<div id="game" class="hide">
+ <div class="arena"><div><div class="mut">Сен</div><div class="sc me" id="a">0</div></div><div class="mut" id="q"></div><div><div class="mut" id="fn" style="text-align:right"></div><div class="sc foe" id="b">0</div></div></div>
+ <div class="tug"><i id="tug"></i></div><div class="timer"><i id="tm"></i></div>
+ <div class="word" id="w"></div><div id="o"></div>
+</div>
+<div id="end" class="hide"><div class="panel"><h1 id="r"></h1><div class="mut" id="d"></div><div id="miss"></div>
+ <button id="again">Қайта ойнау</button><button class="ghost" id="back">Басты бет</button></div></div>
+<script src="words.js"></script>
+<script src="app.js"></script>
+</main></body></html>
